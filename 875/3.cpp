@@ -8,58 +8,48 @@ using namespace std;
 #define pll pair<ll, ll>
 #define pii pair<int, int>
 #define vi vector<int>
-bool sortcol(const vector<int> &v1, const vector<int> &v2)
+
+const int NMAX = 2e5 + 5;
+int dp[NMAX], id[NMAX];
+
+vector<pair<int, int>> edge[NMAX];
+void dfs(int u)
 {
-    return v1[0] < v2[0];
+    for (auto v : edge[u])
+    {
+        if (dp[v.first] == 0)
+        {
+            dp[v.first] = dp[u] + (v.second <= id[u]);
+            id[v.first] = v.second;
+            dfs(v.first);
+        }
+    }
 }
+
 void solve()
 {
-    ll n;
+    int n;
     cin >> n;
 
-    vector<pair<ll, ll>> E(n - 1);
-    ll a, b;
-    for (auto &x : E)
+    for (int i = 1; i <= n; i++)
     {
-
-        cin >> a >> b;
-        if (a > b)
-        {
-            x = mp(b, a);
-        }
-        else
-        {
-            x = mp(a, b);
-        }
+        edge[i].clear();
+        dp[i] = 0;
+        id[i] = 0;
     }
-    vll seen_vertices(n + 1, -1);
-    seen_vertices[1] = 1;
-    ll ans = 1;
 
-    
     for (int i = 0; i < n - 1; i++)
     {
-        if (seen_vertices[E[i].first] == 1 || seen_vertices[E[i].second] == 1)
-        {
-        }
-        else
-        {
-            // cout << E[i].first << seen_vertices[E[i].first] << " " << E[i].second << seen_vertices[E[i].second] << endl;
-            ans++;
-        }
-        seen_vertices[E[i].first] = 1;
-        seen_vertices[E[i].second] = 1;
+        int u, v;
+        cin >> u >> v;
+        edge[u].pb(mp(v, i));
+        edge[v].pb(mp(u, i));
     }
-    cout << ans << endl;
 
-    // seen_vertices[1] = 1;
-    // vector<vector<int>> E2(n-1);
-    // for(int i = 0; i< n-1;i++)
-    // {
-    //     E2[i] = {E[i].first, E[i].second, i+1};
-    // }
-
-    // sort(E2.begin(), E2.end(), sortcol);
+    id[1] = 1;
+    dp[1] = 1;
+    dfs(1);
+    cout << *max_element(dp+1, dp+n+1) << endl;
 }
 
 int main()
