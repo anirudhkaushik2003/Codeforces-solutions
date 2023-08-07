@@ -13,28 +13,20 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
-
-    for(auto &x:a)
+    if(n == 2 || n == 3)
     {
-        cin >> x;
+        cout << "Bob" << endl;
+        return;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    if((n/2)%2 == 0)
     {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+        cout << "Bob" << endl;
     }
-    if(cond == 1)
+    else
     {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
+        cout << "Alice" << endl;
     }
-    else{cout << 0 << endl;}
+    return;
 }
 
 int main()

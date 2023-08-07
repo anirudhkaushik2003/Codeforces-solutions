@@ -13,28 +13,34 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
 
-    for(auto &x:a)
+    vi a(n);
+
+    int n_gp = 0;
+    int n_gen = 0;
+    int count = 0;
+    for (auto &x : a)
     {
         cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
+        if(x == 1)
         {
-            cond = 1;
-            break;
+            n_gp++;
+            if (n_gen > 0)
+                count = max(count, (n_gen/2)+1+(n_gp-n_gen));
+            else
+                count = max(count, n_gp);
+        }
+        else
+        {
+            n_gen = n_gp;
+            if(n_gen > 0)
+                count = max(count, (n_gen/2)+1);
         }
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+
+    cout << count << endl;
+    return;
+
 }
 
 int main()

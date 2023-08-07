@@ -12,29 +12,35 @@ using namespace std;
 void solve()
 {
     int n;
-    cin >> n;
-    vll a(n);
-
-    for(auto &x:a)
+    string a;
+    cin >> a;
+    n = a.size();
+    int l, r;
+    if (n % 2 == 0)
     {
-        cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
+        if (n == 2)
         {
-            cond = 1;
+            cout << "NO" << endl;
+            return;
+        }
+        l = (n / 2) - 1;
+        r = n / 2;
+    }
+    else
+    {
+        l = (n / 2) - 1;
+        r = (n / 2) + 1;
+    }
+    string ans = "NO";
+    for (int i = l - 1; i >= 0; i--)
+    {
+        if (a[i] != a[i + 1])
+        {
+            ans = "YES";
             break;
         }
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << ans << endl;
 }
 
 int main()

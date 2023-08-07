@@ -11,30 +11,31 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n, k;
+    cin >> n >> k;
     vll a(n);
-
-    for(auto &x:a)
-    {
+    for (auto &x : a)
         cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+
+    sort(a.begin(), a.end());
+
+    vll prefix_sum(n + 1, 0);
+    prefix_sum[0] = 0;
+    for (int i = 1; i < n + 1; i++)
     {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+        prefix_sum[i] = prefix_sum[i - 1] + a[i - 1];
     }
-    if(cond == 1)
+
+    ll max_sum = 0;
+
+    int m = 0;
+    while (m < k+1)
     {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
+        max_sum = max(max_sum, prefix_sum[n - (k - m)] - prefix_sum[2 * m]);
+        m++;
     }
-    else{cout << 0 << endl;}
+
+    cout << max_sum << endl;
 }
 
 int main()

@@ -11,30 +11,30 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vll a(n);
+    string s;
+    cin >> s;
+    int count = 0;
 
-    for(auto &x:a)
+    int n = s.length();
+    for (int i = 1; i< n; i++)
     {
-        cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
+        if(s[i] == s[0])
         {
-            cond = 1;
+            count = 0;
+        }
+        else{
+            count = 1;
             break;
         }
     }
-    if(cond == 1)
+    if (count == 0)
     {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
+        cout << -1 << endl;
     }
-    else{cout << 0 << endl;}
+    else
+    {
+        cout << n-1 << endl;
+    }
 }
 
 int main()

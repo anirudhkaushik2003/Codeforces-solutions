@@ -9,29 +9,72 @@ using namespace std;
 #define pii pair<int, int>
 #define vi vector<int>
 
+ll f(int i, ll y, vll &a, vll &dp, int n)
+{
+
+    if (y > a[i] && i < n - 1)
+    {
+        dp[i] = y - a[i] + f(i + 1, y - 1, a, dp, n);
+        return dp[i];
+    }
+    else if (y <= a[i])
+    {
+        dp[i] = 0;
+        return 0;
+    }
+    else if (i == n - 1 && y > a[i])
+    {
+        dp[i] = INT_MAX;
+        return INT_MAX;
+    }
+    return -1;
+}
 void solve()
 {
-    int n,k;
+    int n, k;
     cin >> n >> k;
 
-    vi a(n);
-    for(auto &x:a)
+    vll a(n);
+    for (auto &x : a)
     {
         cin >> x;
     }
     // int ind_max = max_element(a.begin(),a.end()) - a.begin();
     // int max_val = a[ind_max];
-    int i = 0;
-    for(i = n-2;i>=0;i--)
+    ll l = *max_element(a.begin(), a.end());
+    ll r = l + n + 1;
+    ll mid = 0;
+    ll ans = l;
+    while (l <= r)
     {
-        if(a[i]<a[i+1])
+        vll dp(n);
+        mid = (l + r) >> 1;
+        bool flag = false;
+        for (int i = 0; i < n - 1; i++)
         {
-            break;
+
+            f(i, mid, a, dp, n);
+            if (dp[i] <= k)
+            {
+
+                flag = true;
+            }
+        }
+        if (flag)
+        {
+            ans = max(mid, ans);
+            l = mid + 1;
+        }
+        else
+        {
+            r = mid - 1;
         }
     }
-    
+    cout << ans << endl;
 
-
+    // f(i, y) = 0 if y <=  bi
+    // f(i, y) = y - bi + f(i+1, y-1) if y > bi
+    // f(i, y) = inf if i > n-1
 }
 
 int main()

@@ -13,28 +13,16 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
+    vi a(n);
 
-    for(auto &x:a)
-    {
+    for(auto &x : a)
         cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+
+    for(int  i = 0 ; i< n;i++)
     {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+        cout << n-a[i]+1 << " ";
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout <<  endl;
 }
 
 int main()

@@ -13,28 +13,15 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
+    string s;
+    cin >> s;
 
-    for(auto &x:a)
+    map<string, int> m;
+    for(int i = 0; i <n-1; i++)
     {
-        cin >> x;
+        m[s.substr(i, 2)] = 1;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
-    }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << m.size() << "\n";
 }
 
 int main()

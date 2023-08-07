@@ -13,28 +13,25 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
-
-    for(auto &x:a)
+    vi a(n);
+    for (auto &x : a)
     {
         cin >> x;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    if (n % 2 == 0)
     {
-        if(a[i] < a[i-1])
+        for (int i = 1; i + 1 < n; i+=2)
         {
-            cond = 1;
-            break;
+            if (a[n - i - 1] < a[n - i])
+            {
+                cout << "YES" << endl;
+                return;
+            }
         }
+        cout << "NO" << endl;
+        return;
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << "YES" << endl;
 }
 
 int main()

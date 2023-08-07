@@ -13,28 +13,30 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
 
-    for(auto &x:a)
-    {
+    vll a(n);
+    for (auto &x : a)
         cin >> x;
-    }
-    int cond = 0;
+
+    sort(a.begin(), a.end());
     int i = 0;
-    for(i = n-1;i>=1;i--)
+    int cond = -1;
+    for (i = 0; i < n; i++)
     {
-        if(a[i] < a[i-1])
+        if (a[i] % 2 != 0)
         {
-            cond = 1;
+            cond = 0;
             break;
         }
     }
-    if(cond == 1)
+    if (i == 0 || i == n) // all even or all odd
     {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
+        cout << "YES\n";
     }
-    else{cout << 0 << endl;}
+    else
+    {
+        cout << "NO\n";
+    }
 }
 
 int main()

@@ -11,30 +11,34 @@ using namespace std;
 
 void solve()
 {
-    int n;
+    ll n;
     cin >> n;
     vll a(n);
-
-    for(auto &x:a)
-    {
+    for(auto &x : a)
         cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    vll b(n);
+    for(auto &x : b)
+        cin >> x;
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+    ll result = 1;
+    ll module = 1e9+7;
+    ll inc = 0;
+    for(int i = n-1;i>=0;i--)
     {
-        if(a[i] < a[i-1])
+        ll ind = upper_bound(a.begin(), a.end(), b[i]) - a.begin();
+        if(ind  == n)
         {
-            cond = 1;
+            result = 0;
             break;
         }
+        ind = n - ind;
+        result *= (ind - inc);
+        result %= module;
+        inc++;
+
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << result << endl;
 }
 
 int main()

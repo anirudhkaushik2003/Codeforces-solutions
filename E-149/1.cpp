@@ -11,30 +11,19 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vll a(n);
+    ll x, k;
+    cin >> x >> k;
 
-    for(auto &x:a)
+    if(x%k == 0)
     {
-        cin >> x;
+        cout << 2 << endl;
+        cout << x-k-1 << " " << k+1 << endl;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    else
     {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+        cout << 1 << endl;
+        cout << x << endl;
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
 }
 
 int main()

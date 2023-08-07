@@ -11,30 +11,17 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
-    vll a(n);
-
-    for(auto &x:a)
+    int n, k;
+    cin >> n >> k;
+    int max_k = int(log2(n)) + 1;
+    if (max_k > k)
     {
-        cin >> x;
+        cout << (1 << k)  << endl;
+        return;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+    else{
+        cout << n+1 << endl;
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
 }
 
 int main()

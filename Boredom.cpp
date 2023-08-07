@@ -13,28 +13,24 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
 
-    for(auto &x:a)
+    vi a(n);
+
+    for(auto &x : a) cin >> x;
+    vll dp(1e5+1, 0);
+    vll cnt(1e5+1, 0);
+
+    for(int  i = 0 ; i < n ; i++)
     {
-        cin >> x;
+        cnt[a[i]]++;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+
+    dp[1] = cnt[1];
+    for(int  i = 2 ; i < 1e5+1;i++)
     {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+        dp[i] = max(dp[i-1], dp[i-2] + cnt[i]*i);
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << dp[1e5] << endl;
 }
 
 int main()
@@ -42,8 +38,7 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(NULL);
     cout.tie(NULL);
-    int t;
-    cin >> t;
+    int t=1;
     while (t--)
     {
         solve();

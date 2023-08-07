@@ -14,27 +14,17 @@ void solve()
     int n;
     cin >> n;
     vll a(n);
+    for (int i = 0; i < n; i++)
+        cin >> a[i];
+    sort(a.begin(), a.end());
 
-    for(auto &x:a)
+    if (a[0] < 0)
     {
-        cin >> x;
+        cout << a[0] << endl;
+        return;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
-    }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << a[n - 1] << endl;
+    return;
 }
 
 int main()

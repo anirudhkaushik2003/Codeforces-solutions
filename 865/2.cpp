@@ -13,28 +13,32 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
-
-    for(auto &x:a)
+    int a[2][n];
+    a[0][0] = 2*n;
+    a[1][n-1] = 2*n - 1;
+    int j = 2;
+    for (int i = 1; i < n; i+=2)
     {
-        cin >> x;
+        a[0][i] = j;
+        a[1][i-1] = j-1;
+        j += 2;
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    j = 2*n-2;
+    for(int i = 2; i< n; i+=2)
     {
-        if(a[i] < a[i-1])
+        a[0][i] = j;
+        a[1][i-1] = j-1;
+        j -= 2;
+    }
+    for(int i = 0; i < 2; i++)
+    {
+        for(int j = 0; j < n; j++)
         {
-            cond = 1;
-            break;
+            cout << a[i][j] << " ";
         }
+        cout << endl;
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+
 }
 
 int main()

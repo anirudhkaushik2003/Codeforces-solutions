@@ -9,32 +9,38 @@ using namespace std;
 #define pii pair<int, int>
 #define vi vector<int>
 
+bool split(int n, int m)
+{
+    if (n == m)
+    {
+        return true;
+    }
+    if(n < m)
+    {
+        return false;
+    }
+    if(n%3 == 0)
+    {
+        return split(n/3, m) || split((2*n)/3, m);
+    }
+    return false;
+}
+
 void solve()
 {
-    int n;
-    cin >> n;
-    vll a(n);
+    int n, m;
+    cin >> n >> m;
+    
 
-    for(auto &x:a)
+    if(split(n, m))
     {
-        cin >> x;
+        cout << "YES\n";
     }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    else
     {
-        if(a[i] < a[i-1])
-        {
-            cond = 1;
-            break;
-        }
+        cout << "NO\n";
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+
 }
 
 int main()

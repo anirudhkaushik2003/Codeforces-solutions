@@ -13,28 +13,23 @@ void solve()
 {
     int n;
     cin >> n;
-    vll a(n);
-
-    for(auto &x:a)
+    string s;
+    cin >> s;
+    char cur = s[0];
+    string a = "";
+    a = a + s[0];
+    for (int i = 1; i < n; i++)
     {
-        cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
-    {
-        if(a[i] < a[i-1])
+        if (s[i] == cur)
         {
-            cond = 1;
-            break;
+            i++;
+            if (i < n)
+            {
+                a += s[i];
+                cur = s[i];
+            }
         }
-    }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    } cout << a << endl;
 }
 
 int main()

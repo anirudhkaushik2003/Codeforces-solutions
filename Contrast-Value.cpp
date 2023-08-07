@@ -13,28 +13,29 @@ void solve()
 {
     int n;
     cin >> n;
+
     vll a(n);
 
-    for(auto &x:a)
-    {
+    for (auto &x : a)
         cin >> x;
-    }
-    int cond = 0;
-    int i = 0;
-    for(i = n-1;i>=1;i--)
+    ll contrast = 0;
+    int ans = 1;
+    int sign = 0;
+    for (int i = 1; i < n; i++)
     {
-        if(a[i] < a[i-1])
+        int temp = (a[i] - a[i - 1]);
+        if (temp != 0)
         {
-            cond = 1;
-            break;
+            temp /= abs(a[i] - a[i - 1]);
+        }
+        if (sign != temp && temp != 0)
+        {
+            ans++;
+            // cout << temp << endl;
+            sign = temp;
         }
     }
-    if(cond == 1)
-    {
-        long long ans = *max_element(a.begin(),a.begin()+i+1) ;
-        cout  << ans << endl;
-    }
-    else{cout << 0 << endl;}
+    cout << ans << endl;
 }
 
 int main()
