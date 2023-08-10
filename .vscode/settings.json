@@ -18,6 +18,7 @@
         "xstring": "cpp",
         "xutility": "cpp",
         "cmath": "cpp",
-        "xiosbase": "cpp"
+        "xiosbase": "cpp",
+        "memory": "cpp"
     }
 }
