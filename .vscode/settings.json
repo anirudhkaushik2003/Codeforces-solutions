@@ -14,6 +14,9 @@
         "regex": "cpp",
         "utility": "cpp",
         "valarray": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "xstring": "cpp",
+        "xutility": "cpp",
+        "cmath": "cpp"
     }
 }
