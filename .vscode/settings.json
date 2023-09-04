@@ -1,5 +1,6 @@
 {
     "files.associations": {
+        "*.rmd": "markdown",
         "*.html": "html",
         "*.js": "javascriptreact",
         "iostream": "cpp",
@@ -19,6 +20,8 @@
         "xutility": "cpp",
         "cmath": "cpp",
         "xiosbase": "cpp",
-        "memory": "cpp"
+        "memory": "cpp",
+        "type_traits": "cpp",
+        "cstdlib": "cpp"
     }
 }
