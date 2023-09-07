@@ -35,6 +35,7 @@ int lcs(vector<vector<vector<int>>> dp, string arr1, int n, string arr2, int m, 
     
     // calculating LCS with changes made.
     int dist = abs(arr1[n - 1] - arr2[m - 1]);
+    if(arr1[n-1] == 'a' && arr2[m-1] == 'z' )
     ans = max(ans, 1 + lcs(dp, arr1, n - 1, arr2, m - 1, (k - dist)));
 
     dp[n-1][m-1][k-1] = ans;
