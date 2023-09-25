@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.html": "html",
+        "*.js": "javascriptreact",
+        "*.tcc": "cpp",
+        "iostream": "cpp"
+    }
+}

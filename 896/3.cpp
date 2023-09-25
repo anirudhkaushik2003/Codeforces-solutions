@@ -23,23 +23,11 @@ void solve()
         }
         return;
     }
-    if (m == 2)
-    {
-        cout << 2 << endl;
-        for (int i = 0; i < n; i++)
-        {
-            cout << 0 << " " << 1 << endl;
-        }
-    }
+    
 
-    if (n >= m)
+    if (n >= m-1)
     {
-        if (n > 3)
-        {
-            cout << n + 1 << endl;
-        }
-        else
-            cout << m << endl;
+        cout <<  m << endl;
     }
     else
     {
@@ -59,12 +47,11 @@ void solve()
         }
         cout << endl;
     }
-    int k = 0;
     while (j < n)
     {
         for (int i = m - 1; i >= 0; i--)
         {
-            int temp = i - k;
+            int temp = i - (m-2);
             if (temp < 0)
             {
                 temp += m;
@@ -73,7 +60,6 @@ void solve()
         }
         cout << endl;
         j++;
-        k++;
     }
 }
 
