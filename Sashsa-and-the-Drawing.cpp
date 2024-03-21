@@ -11,8 +11,15 @@ using namespace std;
 
 void solve()
 {
-    int n;
-    cin >> n;
+    int n,k;
+    cin >> n >> k;
+    if(k == 4*n-2)
+    {
+        cout << 2*n << endl;
+    }
+    else{
+        cout << (k+1)/2 << endl;
+    }
 }
 
 int main()
